@@ -17,15 +17,13 @@ class MainResource(object):
 		user_id = req.get_param('user_id').decode('ascii')
 		channel_id = req.get_param('channel_id').decode('ascii')
 		response_url = req.get_param('response_url').decode('ascii')
-		print response_url
-		url = "http://lmgtfy.com/?q=" + text.replace(" ","+")
+                url = "http://lmgtfy.com/?q=" + text.replace(" ","+")
 		shortener = Shortener('Tinyurl')
 		json_response = { 
 			"token": token,
-			"scope": 'client',
 			"response_type": "in_channel",
 			"channel": channel_id,
-			"text": shortener.short(url),
+			"text": "Here's an answer to your question: " + shortener.short(url),
 			"as_user": True,
 			"scope": 'chat:write:user'
 		}
